@@ -1,0 +1,95 @@
+#+TITLE: ob-pact: Org Babel Support for Pact
+#+AUTHOR: Ariel Serranoni
+#+EMAIL: arielserranoni@gmail.com
+#+DATE: 2025-04-08
+
+* Overview
+** ob-pact
+ob-pact is an Org Babel extension that provides seamless integration and execution of Pact language code blocks within Org mode documents for GNU Emacs. It is tailored for users who want to leverage literate programming and reproducible research techniques with Pact—a smart contract language.
+
+* Features
+- **Pact REPL Integration:**
+  Automatically starts a Pact REPL (using the `pact` executable) in a dedicated buffer (default name: "*pact-repl*"). The REPL session is managed transparently so that code blocks communicate directly with it.
+
+- **Org Babel Support:**
+  Embeds and executes Pact code blocks inside Org documents. The output is captured from the REPL, cleansed of echoed input and prompt lines, and returned for in-document display.
+
+- **Compatibility Polyfills:**
+  Provides polyfills for functions such as `string-trim` and `string-join` to support older Emacs versions.
+
+- **Session Management:**
+  Supports persistent sessions via `org-babel-pact-initiate-session`, ensuring that your REPL session remains active across evaluations.
+
+* Installation
+1. **Download the Package:**
+   Save the file `ob-pact.el` in a directory of your choice.
+
+2. **Update Your Load Path:**
+   Add the package directory to your Emacs `load-path`. For example, add the following to your Emacs init file (e.g., `~/.emacs` or `~/.emacs.d/init.el`):
+
+   #+BEGIN_SRC elisp
+     (add-to-list 'load-path "/path/to/ob-pact")
+     (require 'ob-pact)
+   #+END_SRC
+
+3. **Enable Pact in Org Babel:**
+   Configure Org Babel to load Pact by adding it to your Babel languages:
+
+   #+BEGIN_SRC elisp
+     (org-babel-do-load-languages
+      'org-babel-load-languages
+      '((pact . t)))
+   #+END_SRC
+
+* Usage
+You can now include Pact code blocks in your Org mode files. For instance:
+
+#+BEGIN_SRC pact
+; A simple Pact code example
+(display "Hello Pact!")
+#+END_SRC
+
+- **Evaluate Code Blocks:**
+  Place the cursor inside the code block and press `C-c C-c` to execute it. The cleaned result from the Pact REPL will be inserted into your Org document.
+
+- **Starting a Persistent Session:**
+  To run Pact code across multiple blocks or files, initiate a persistent REPL session with:
+
+  #+BEGIN_SRC elisp
+    (org-babel-pact-initiate-session)
+  #+END_SRC
+
+  This starts the Pact REPL if it isn’t already running.
+
+* Customization
+You can tailor ob-pact to your workflow via customization variables:
+- **REPL Buffer Name:**
+  Change the default REPL buffer by setting:
+
+  #+BEGIN_SRC elisp
+    (setq org-babel-pact-repl-buffer "*my-pact-repl*")
+  #+END_SRC
+
+- **Prompt String:**
+  Adjust the REPL prompt by modifying `org-babel-pact--prompt`.
+
+- **Timeout Settings:**
+  If your environment is slower, consider increasing the timeout value in `org-babel-pact--wait-for-prompt`.
+
+* Troubleshooting
+- **Executable Availability:**
+  Ensure that the `pact` executable is in your system’s PATH. If the REPL fails to start, verify that Pact is correctly installed.
+
+- **REPL Output Issues:**
+  If you receive errors that the expected prompt is not found, try increasing the timeout period in `org-babel-pact--wait-for-prompt` to suit your system’s performance.
+
+* Contributing
+Contributions, bug reports, and feature requests are welcome. Please refer to the [GitHub repository](https://github.com/aserranoni/ob-pact) for submission guidelines and further details on contributing.
+
+* License
+This file is not part of GNU Emacs. ob-pact is distributed under the same terms as Emacs. See the header in `ob-pact.el` for complete licensing information.
+
+* Author
+Ariel Serranoni (<arielserranoni@gmail.com>)
+
+Happy Pact coding!
