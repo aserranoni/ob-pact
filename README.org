@@ -2,14 +2,15 @@
 #+AUTHOR: Ariel Serranoni
 #+EMAIL: arielserranoni@gmail.com
 #+DATE: 2025-04-08
+#+TOC: headlines 2
 
 * Overview
 ** ob-pact
-ob-pact is an Org Babel extension that provides seamless integration and execution of Pact language code blocks within Org mode documents for GNU Emacs. It is tailored for users who want to leverage literate programming and reproducible research techniques with Pact—a smart contract language.
+ob-pact is an Org Babel extension that provides seamless integration and execution of Pact language code blocks within Org mode documents for GNU Emacs. It is tailored for users who want to leverage the power of Pact language inside their Org documents.
 
 * Features
 - **Pact REPL Integration:**
-  Automatically starts a Pact REPL (using the `pact` executable) in a dedicated buffer (default name: "*pact-repl*"). The REPL session is managed transparently so that code blocks communicate directly with it.
+  Automatically starts a Pact REPL (using the `pact` executable) in a dedicated buffer (default name: "*pact-repl*"). The REPL session is managed transparently so that code blocks communicate directly with the REPL.
 
 - **Org Babel Support:**
   Embeds and executes Pact code blocks inside Org documents. The output is captured from the REPL, cleansed of echoed input and prompt lines, and returned for in-document display.
