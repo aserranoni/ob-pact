@@ -120,8 +120,6 @@ Returns the result output so that Org Babel can print it."
   "Initiate a Pact session named SESSION if one is not already running."
   (org-babel-pact--start-repl))
 
-;;;###autoload
-(add-to-list 'org-babel-load-languages '(pact . t))
 
 (provide 'ob-pact)
 ;;; ob-pact.el ends here
